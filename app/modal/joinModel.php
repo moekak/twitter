@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . "../../../reg/conf.php";
 class JoinModel
 {
     public $pdo;
-    public $logFile = LOG_FILE;
+    public $logFile = LOG_FILE_MODEL;
 
     public function __construct()
     {

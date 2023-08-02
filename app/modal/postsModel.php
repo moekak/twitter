@@ -3,7 +3,7 @@ require_once dirname(__FILE__) . "../../../reg/conf.php";
 class postsModel
 {
     public $pdo;
-    public $logFile = "../../../reg/log/model.log";
+    public $logFile = LOG_FILE_MODEL;
 
     public function __construct()
     {

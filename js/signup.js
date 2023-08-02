@@ -1,19 +1,25 @@
 const signupBtn = document.getElementById("js_signup-btn");
-const modal_bg = document.querySelector(".js_modal_bg");
 const signupModal = document.getElementById("js_register");
 const step1 = document.getElementById("js_step_first");
+const step2 = document.getElementById("js_step_second");
+const step3 = document.getElementById("js_step_third");
+const step4 = document.getElementById("js_step_forth");
+const step5 = document.getElementById("js_icon_register");
 const submitBtn = document.getElementById("js_submit_btn");
+
+// 電話番号チェックで使うアラート文
+const alert1 = document.getElementById("js_alert1");
+const alert2 = document.getElementById("js_alert2");
 
 // signup modal を開く
 signupBtn.addEventListener("click", () => {
-  modal_bg.classList.remove("hidden");
+  modal_bg.style.display = "block";
   signupModal.style.display = "flex";
   step1.classList.remove("hidden");
 });
 
 // ============================ ステップ1 ==================================
 const createBtn = document.getElementById("js_create-btn");
-const step2 = document.getElementById("js_step_second");
 const nextBtn1 = document.getElementById("js_nextBtn1");
 
 createBtn.addEventListener("click", () => {
@@ -28,16 +34,12 @@ const selectMonth = document.getElementById("js_month");
 const selectDay = document.getElementById("js_day");
 const selectYear = document.getElementById("js_year");
 
-// 電話番号チェックで使うアラート文
-const alert1 = document.getElementById("js_alert1");
-const alert2 = document.getElementById("js_alert2");
-
 let nameValue = "";
 let phoneValue = "";
 let yearValue = "";
 let monthValue = "";
 let dayValue = "";
-let passwordValue ="";
+let passwordValue = "";
 
 document.addEventListener("input", (e) => {
   //input fieldに入力された値を取得する
@@ -53,6 +55,10 @@ document.addEventListener("input", (e) => {
   // 1. 1 電話番号のinput field に入力されたときに基づいてスタイルを変える
   inputPhone.addEventListener("input", (e) => {
     phoneValue = inputPhone.value;
+
+    if (!alert2.classList.contains("hidden")) {
+      alert2.classList.add("hidden");
+    }
     if (phoneRegex.test(phoneValue)) {
       alert1.classList.add("hidden");
       inputPhone.style.border = "1px solid rgba(0, 0, 0, 0.185)";
@@ -97,7 +103,6 @@ document.addEventListener("input", (e) => {
   }
 
   // ============================ ステップ2 ==================================
-  const step3 = document.getElementById("js_step_third");
   const inputName_check = document.getElementById("js_name_check");
   const inputPhone_check = document.getElementById("js_phone_check");
   const inputBD_check = document.getElementById("js_bd_check");
@@ -146,12 +151,10 @@ document.addEventListener("input", (e) => {
   }
 
   // ================================= ステップ3 ================================
-  const signupBtn = document.getElementById("js_signUp_btn");
-  const step4 = document.getElementById("js_step_forth");
+  const signupBtn2 = document.getElementById("js_signUp_btn");
   const inputPassword = document.getElementById("js_input_password");
 
-
-  signupBtn.addEventListener("click", () => {
+  signupBtn2.addEventListener("click", () => {
     step3.classList.add("hidden");
     step4.classList.remove("hidden");
   });
@@ -208,24 +211,15 @@ document.addEventListener("input", (e) => {
   }
 
   // ==================================　ステップ4 ======================================
-
-  
 });
 
 submitBtn.addEventListener("click", () => {
-  // step3.classList.add("hidden");
-  // const data = {
-  //   name: nameValue,
-  //   phone: phoneValue,
-  //   password: passwordValue,
-  // };
-
-  const data = [
-    nameValue,
-    phoneValue,
-    monthValue + " " + dayValue + "," + yearValue,
-    passwordValue,
-  ];
+  const data = {
+    name: nameValue,
+    phone: phoneValue,
+    birthday: monthValue + " " + dayValue + "," + yearValue,
+    password: passwordValue,
+  };
 
   fetch("./../app/fetch/signupFetch.php", {
     // 第1引数に送り先
@@ -239,9 +233,52 @@ submitBtn.addEventListener("click", () => {
     .then((response) => response.json()) // 返ってきたレスポンスをjsonで受け取って次のthenへ渡す
     .then((res) => {
       console.log(res); // やりたい処理
-      
+      if (res["errorCheck"] == "success") {
+        document.getElementById("js_userID").value = res["user_id"];
+        console.log(res["user_id"]);
+        step4.classList.add("hidden");
+        step5.classList.remove("hidden");
+        step5.style.display = "flex";
+      } else {
+        step4.classList.add("hidden");
+        step2.classList.remove("hidden");
+        alert2.classList.remove("hidden");
+      }
     })
     .catch((error) => {
-      console.log(error);
+      fetch("./../app/fetch/errorFetch.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          error: error.message,
+          // その他、送りたい情報
+        }),
+      });
     });
+});
+
+// アイコンupload
+
+const upload = document.getElementById("icon-btn");
+const dummy = document.querySelector(".icon-dummy");
+const iconBtn = document.getElementById("js_icon_btn");
+upload.addEventListener("change", (e) => {
+  // ユーザーのコンピュータ上のファイル（通常はユーザーがフォームを通じて選択したもの）を非同期に読み取る
+  var reader = new FileReader();
+
+  // FileReaderオブジェクトがファイルの読み込みを完了したときに発火する
+  reader.onload = (e) => {
+    dispayImage = document.getElementById("displayImage2");
+    // データURLを返す（e.target.result）
+    dispayImage.src = e.target.result;
+    dispayImage.style.display = "block";
+    dummy.style.display = "none";
+    iconBtn.innerHTML = "upload";
+    iconBtn.style.backgroundColor = "var(--blue)";
+    iconBtn.style.pointerEvents = "auto";
+  };
+  // イベントオブジェクト e の target プロパティ（この場合、ファイルを選択する <input> 要素）の files プロパティを通じて選択されたファイルのリストにアクセスし、その中の最初のファイルを取り出している(e.target.files[0])
+  reader.readAsDataURL(e.target.files[0]);
 });

@@ -129,10 +129,18 @@
   font-size: 0.8rem;
 }
 .create-account {
-  margin-top: 5%;
+  margin-top: 34%;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 7%;
+}
+.create-accoun2 {
+  margin-top: 10%;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 7%;
 }
 .border {
   color: black;
@@ -150,6 +158,22 @@
   margin-left: auto;
   gap: 5%;
   width: 55%;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}
+.create-account2 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 10%;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  margin-right: auto;
+  margin-left: auto;
+  gap: 5%;
+  margin-top: 15%;
+  width: 262px;
   color: white;
   background-color: black;
   font-weight: bold;
@@ -436,21 +460,167 @@ select:focus {
 #js_submit_btn{
   pointer-events:  none;
 }
-/* ============================ step 5 ============================== */
-.register-step-fifth {
+
+/*  ====================== アイコン　====================== */
+.step-fifth-section {
   width: 100%;
   height: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 11%;
 }
-.step-fifth-section h2 {
-  margin-top: 5%;
-  font-weight: 900;
-  margin-bottom: 5%;
-  font-size: 1.8rem;
+.upload {
+  color: rgba(0, 0, 0, 0.596);
 }
-.step-fifth-section {
-  padding: 3% 9%;
+.icon {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 10%;
 }
-.next-btn a{
+.icon input[type="file"] {
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.user-dummy {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.user-icon {
+  width: 74%;
+  margin: -74% 0% 0% 42%;
+  border-radius: 50%;
+}
+.icon-register-container{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.next-btn-container2 {
+  width: 100%;
+  bottom: 18%;
+  text-align: center;
+}
+.next-btn2 {
+  width: 73%;
+  margin-top: 10%;
+  padding: 4%;
   color: white;
-  text-decoration: none;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.637);
+  border-radius: 30px;
+  border: none;
+}
+.displayIcon{
+  position: absolute;
+  top: 0%;
+  right: 30%;
+}
+
+
+
+/*  ========================== ログイン ============================ */
+.login-wrapper {
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 999;
+  width: 511px;
+  /* display: none; */
+  flex-direction: column;
+  align-items: center;
+  height: 611px;
+  padding: 2% 3%;
+  border-radius: 15px;
+}
+
+
+/* step1 */
+.input-signIn-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+.input-signIn-section input {
+  width: 309px;
+  padding: 3%;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+  background-color: transparent;
+  margin-top: 5%;
+}
+.signin-account button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4% 10%;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  margin-right: auto;
+  margin-left: auto;
+  gap: 5%;
+  width: 245px;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  margin-top: 18%;
+}
+.signup-ask {
+  text-align: center;
+  margin-top: 7%;
+}
+/* .login-first-step{
+  display: none;
+
+} */
+/* step2 */
+.login-second-step{
+  height: 100%;
+  text-align: center;
+  /* display: none; */
+}
+.input-read-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14%;
+}
+.input-read-section input {
+  width: 60%;
+  padding: 2%;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(128, 128, 128, 0.089);
+}
+.input-read-section input:focus {
+  outline: none;
+}
+.input-password-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+.input-password-section input {
+  width: 60%;
+  padding: 2%;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+  background-color: transparent;
+}
+.close-btn{
+  text-align: left;
 }

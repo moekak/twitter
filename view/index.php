@@ -1,26 +1,8 @@
 <?php
 require_once dirname(__FILE__) . "../../app/controller/getPostsController.php";
 
-$postData;
 $path = "./images/";
 
-// $like = new postService();
-
-// $path = "./images/";
-
-// echo $_SESSION["user_id"];
-// $post = $_SESSION["postData"];
-
-// $counts = $_SESSION["likesCount"];
-// $userName = $_SESSION["username"];
-// $userEmail = $_SESSION["email"];
-// $userIcon = $_SESSION["icon"];
-
-// $userId = "";
-// if ($_SESSION["user_id"]) {
-//     $userId = $_SESSION["user_id"];
-// }
-// echo $_SESSION["user_id"];
 ?>
 
 
@@ -44,7 +26,7 @@ $path = "./images/";
 </head>
 
 <body class="contents1800">
-    <div class="bg-gray js_modal_bg hidden"></div>
+    <div class="bg-gray js_modal_bg "></div>
     <div class="main-area relative">
         <div class="nav-wrapper">
             <i class="fab fa-twitter"></i>
@@ -74,10 +56,10 @@ $path = "./images/";
                         <p class="bold padding_r40"><?=$post["name"]?></p>
                         <p class="gray padding_r20"><?=$post["login_name"]?></p>
                         <?php
-                            $date = $post["created_at"];
-                            $timestamp = strtotime($date);
-                            $day = date("Y/m/d", $timestamp);
-                        ?>
+$date = $post["created_at"];
+$timestamp = strtotime($date);
+$day = date("Y/m/d", $timestamp);
+?>
                         <p class="gray padding_r20">.</p>
                         <p class="gray"><?=$day?></p>
                     </div>
@@ -115,7 +97,7 @@ $path = "./images/";
             <p>People on Twitter are the first to know.</p>
         </div>
         <div class="right">
-            <div class="login-btn">
+            <div class="login-btn" id="js_login-btn">
                 Log in
             </div>
             <div class="signup-btn" id="js_signup-btn">
@@ -160,7 +142,7 @@ $path = "./images/";
                     </button>
                 </div>
                 <div class="border"><span>――――――――</span> or <span>――――――――</span></div>
-                <div class="create-account">
+                <div class="create-account2">
                     <button id="js_create-btn">Create account</button>
                 </div>
                 <p class="policy">By signing up, you agree to the <span> Terms of Service</span>and <span> Privacy
@@ -272,7 +254,8 @@ $path = "./images/";
                 <h2>Create your password</h2>
                 <div class="relative">
                     <!-- <form action="./session/app/controller/SignupController.php" method="post"> -->
-                    <input type="password" class="input-password" name="username" placeholder="password" maxlength="30" id="js_input_password">
+                    <input type="password" class="input-password" name="username" placeholder="password" maxlength="30"
+                        id="js_input_password">
                     <div class="length-check Js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least 8 characters long</p>
@@ -300,8 +283,106 @@ $path = "./images/";
             </div>
 
         </div>
-        
+
+        <!-- =================== アイコン ===============-->
+        <div class="step-fifth-section relative hidden" id="js_icon_register">
+            <i class="fab fa-twitter two"></i>
+            <h2>Choose profile picture</h2>
+            <p class="upload">Let's upload your favorite picture</p>
+            <div class="relative icon-register-container">
+                <form action="../app/controller/insertIconController.php" method="post" enctype="multipart/form-data"
+                    class="icon-form">
+                    <div class="icon">
+                        <img src="../assets/img/user-dummy.png" alt="" class="user-dummy icon-dummy">
+                        <input type="file" name="icon" id="icon-btn">
+                        <img id="displayImage2" src="#" alt="your image" style="display:none;"
+                            class="user-dummy displayIcon">
+                    </div>
+                    <input type="hidden" id="js_userID" name="user_id">
+                    <div class="next-btn-container2 absolute">
+                        <button class="next-btn2" type="submit" name="submit" value="submit"
+                            id="js_icon_btn">later</button>
+                    </div>
+                </form>
+
+            </div>
+
+
+        </div>
+
 
     </div>
+    <!-- ============== ログインモーダル =============== -->
+    <div class="login-wrapper hidden" id="js_login">
+        <div class="login-first-step hidden" id="js_login-first">
+            <div class="close-btn bold">×</div>
+            <div class="top-container">
+                <i class="fab fa-twitter"></i>
+                <h2 class="bold">Sign in to Twitter</h2>
+            </div>
+            <div class="padding_t50"></div>
+            <div class="bottom-container">
+                <div class="google">
+                    <button>
+                        <div class="icon-left">
+                            <img src="../assets/img/user-dummy.png" alt="" class="user-icon-google">
+                        </div>
+                        <div class="right-name">
+                            <p>Sign in as moeka</p>
+                        </div>
+                        <div class="google-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </button>
+                </div>
+                <div class="apple">
+                    <button>
+                        <div class="icon-left">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="right-name apple-text">
+                            <p>Sign up with Apple</p>
+                        </div>
+                    </button>
+                </div>
+                <div class="border"><span>――――――――</span> or <span>――――――――</span></div>
+                <div class="input-signIn-section">
+                    <input type="text" placeholder="Phone, email, or username" id="signIn">
+                </div>
+                <div class="signin-account">
+                    <button id="signin-btn">Next</button>
+                </div>
+                <div class="signup-ask">
+                    <p>Don't have an account? <a href="" class="bold">Sign up</a></p>
+                </div>
+
+            </div>
+        </div>
+        <div class="login-second-step hidden">
+            <div class="closeBtn-container">
+                <div class="close-btn bold">×</div>
+            </div>
+            
+            <div class="top">
+                <i class="fab fa-twitter"></i>
+                <h2>Enter your password</h2>
+            </div>
+            <div class="input-read-section">
+                <input type="text" readonly id="phone-read">
+            </div>
+            <div class="input-password-section">
+                <input type="password" placeholder="Password" id="pass">
+            </div>
+            <div class="create-account" id="check-btn">
+                <button id="signin-check">Next</button>
+            </div>
+            <div class="signin-ask">
+                <p>Don't have an account? <a href="">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/login.js"></script>
     <script src="../js/signup.js"></script>
 </body>
