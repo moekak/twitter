@@ -44,7 +44,7 @@ $path = "./images/";
 </head>
 
 <body class="contents1800">
-    <div class="bg-gray js_modal_bg hidden" ></div>
+    <div class="bg-gray js_modal_bg hidden"></div>
     <div class="main-area relative">
         <div class="nav-wrapper">
             <i class="fab fa-twitter"></i>
@@ -178,11 +178,14 @@ $path = "./images/";
                 <h3>Step 1 of 3</h3>
                 <h2>Create your account</h2>
                 <div class="relative input-container">
-                    <input type="text" class="input-name relative" name="useranme" placeholder="Name" maxlength="50" id="js_name_input">
+                    <input type="text" class="input-name relative" name="useranme" placeholder="Name" maxlength="50"
+                        id="js_name_input">
                     <p class="count absolute"></p>
-                    <input type="text" class="input-phone relative" name="phonenumber" placeholder="Phone" id="js_phone_input">
+                    <input type="text" class="input-phone relative" name="phonenumber" placeholder="Phone"
+                        id="js_phone_input">
                     <p class="alert-phone hidden" id="js_alert1">Please enter a valid phone number.</p>
-                    <p class="alert-phone2 hidden" id="js_alert2">This number is already in use with other accounts. Please use another.
+                    <p class="alert-phone2 hidden" id="js_alert2">This number is already in use with other accounts.
+                        Please use another.
                     </p>
                 </div>
                 <div class="date-of-birth-container">
@@ -232,15 +235,18 @@ $path = "./images/";
                 <h3>Step 2 of 3</h3>
                 <h2>Create your account</h2>
                 <div class="relative">
-                    <input type="text" class="input-name-check" name="username" placeholder="Name" maxlength="50">
-                    <i class="fas fa-check-circle absolute checked1"></i>
-                    <i class="fas fa-times absolute close1"></i>
-                    <input type="text" class="input-phone-check" name="phonenumber" placeholder="Phone">
-                    <i class="fas fa-check-circle absolute checked2"></i>
-                    <i class="fas fa-times absolute close2"></i>
-                    <input type="text" class="input-birthday-check" name="birthday" placeholder="Date of birth">
-                    <i class="fas fa-check-circle absolute checked3"></i>
-                    <i class="fas fa-times absolute close3"></i>
+                    <input type="text" class="input-name-check" id="js_name_check" name="username" placeholder="Name"
+                        maxlength="50">
+                    <i class="fas fa-check-circle absolute checked1" id="js_check1"></i>
+                    <i class="fas fa-times absolute error1" id="js_error1"></i>
+                    <input type="text" class="input-phone-check" id="js_phone_check" name="phonenumber"
+                        placeholder="Phone">
+                    <i class="fas fa-check-circle absolute checked2" id="js_check2"></i>
+                    <i class="fas fa-times absolute error2" id="js_error2"></i>
+                    <input type="text" class="input-birthday-check" id="js_bd_check" name="birthday"
+                        placeholder="Date of birth">
+                    <i class="fas fa-check-circle absolute checked3" id="js_check3"></i>
+                    <i class="fas fa-times absolute error3" id="js_error3"></i>
                     <p class="alert">By signing up, you agree to the <a href="">Terms of Service</a> and <a
                             href="">Privacy
                             Policy</a>, including <a href="">Cookie Use</a>. Twitter
@@ -255,45 +261,46 @@ $path = "./images/";
                 </div>
             </div>
             <div class="next-btn-container absolute">
-                <button class="signUp-btn" type="submit">Sign up</button>
+                <button class="signUp-btn" type="submit" id="js_signUp_btn">Sign up</button>
             </div>
         </div>
         <!-- step4 -->
-        <div class="register-step-forth relative hidden">
+        <div class="register-step-forth relative hidden" id="js_step_forth">
             <div class="close-btn bold">×</div>
             <div class="step-forth-section">
                 <h3>Step 3 of 3</h3>
                 <h2>Create your password</h2>
                 <div class="relative">
                     <!-- <form action="./session/app/controller/SignupController.php" method="post"> -->
-                    <input type="password" class="input-password" name="username" placeholder="password" maxlength="30">
-                    <div class="length-check">
+                    <input type="password" class="input-password" name="username" placeholder="password" maxlength="30" id="js_input_password">
+                    <div class="length-check Js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least 8 characters long</p>
                     </div>
-                    <div class="contain-lower">
+                    <div class="contain-lower js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least one lowercase letter</p>
                     </div>
-                    <div class="contain-upper">
+                    <div class="contain-upper js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least one uppercase letter</p>
                     </div>
-                    <div class="contain-num">
+                    <div class="contain-num js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least one number</p>
                     </div>
-                    <div class="contain-special">
+                    <div class="contain-special js_validations">
                         <i class="fas fa-check"></i>
                         <p>at least one special character</p>
                     </div>
                 </div>
             </div>
             <div class="next-btn-container absolute">
-                <a href="#five" onclick="location.reload();"><button class="next-btn" type="submit">Submit</button></a>
+                <button class="next-btn" type="submit" id="js_submit_btn">Submit</button>
             </div>
 
         </div>
+        
 
     </div>
     <script src="../js/signup.js"></script>
